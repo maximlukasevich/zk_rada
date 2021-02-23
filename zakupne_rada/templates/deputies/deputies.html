@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Депутати {% endblock %}
+
+{% block page_caption %} Депутати {% endblock %}
+
+{% block content %} 
+    {% if deputies_list %}
+    <div class="card-columns">
+        {% for deputy in deputies_list %}
+        <div class="col-md-12 p-0">
+        <div class="card">
+        {% if deputy.photo != "" %}
+            <img class="card-img-top" src="{{deputy.photo.url}}" alt="deputy">
+        {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{deputy.fullName}}</h5>
+                <hr>
+                <p class="card-text">
+                    <b>Партія:</b> {{deputy.group}}
+                    <br>
+                    <b>Місце роботи:</b> {{deputy.workPlace}}
+                    <br>
+                    <b>Посада:</b> {{deputy.position}}
+                    <br>
+                    <b>Виборча дільниця:</b> {{deputy.pollingStation}}
+                </p>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+
+
+{% endblock %}

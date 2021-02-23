@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <title>{% block title %} Закупненська селищна рада {% endblock %}</title>
+</head>
+<body>
+    <div class="search_block">
+        <form action="/search_result" method="GET">
+            <div class="input-group mb-3">
+                <input type="search" name="search_query" class="form-control" placeholder="Пошук" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <input class="btn btn-primary" type="submit" value="Знайти">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="bg-image">
+        <div class="container">
+            <header class="row">
+                <div class="text-center col-md-3 col-sm-12">
+                    <p>
+                    <img class="logoImage center" src="{% static 'logo.png' %}" alt="logo.png">
+                    </p>
+                </div>
+                <div class="logoText col-md-9 col-sm-12">
+                    <h1>Закупненська селищна рада</h1>
+                    <p><i>Хмельницька область, Чемеровецький район</i></p>
+                </div>
+            </header>
+            
+            <nav class="row navbar-expand-md sticky-top">
+                    <button class="navbar-toggler toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>                       
+                    </button>
+                    
+                    <div class="col-lg-3 empty-div">
+                        
+                    </div>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    
+                    <div class="col-md-12 col-lg-9 ">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'main:index' %}">Головна</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'news:index' %}">Новини</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'gallery:index' %}">Фотогалерея</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'advertisement:index' %}">Оголошення</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'documents:index' %}">Документи</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'contacts:index' %}">Контакти</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+            
+            <div class="row">
+
+                <aside  class="side-nav col-md-3 col-sm-12">
+    
+                    <a class="col-sm-12 btn btn-primary collapse_button" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="arrow down"></i>
+                    </a>
+
+                    <div class="collapse narrow-results " id="collapseExample">
+                        
+                    <ul class="nav flex-column"> 
+                        <div class="nav-item btn-group dropright">
+                            <a class="nav-link dropdown-toggle drop-nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Селищна рада
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="badge badge-danger">Х</a>
+                                <a class="nav-link" href="">Регламент селищної ради</a>
+                                <a class="nav-link" href="">План роботи селищної ради</a>
+                            </div>
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'deputies:index' %}">Депутати</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:executiveCommittee' %}">Виконавчий комітет</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'receptionSchedule:index' %}">Графік прийому громадян</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Керівництво</a>
+                        </li>
+                        <div class="nav-item btn-group dropright">
+                            <a class="nav-link dropdown-toggle drop-nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Установи
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="badge badge-danger">Х</a>
+                                <a class="nav-link" href="">Комунальні підприємства / Установи / Заклади</a>
+                                <a class="nav-link" href="">Заклади освіти</a>
+                                <a class="nav-link" href="">Заклади культури</a>
+                            </div>
+                        </div>
+                        <div class="nav-item btn-group dropright">
+                            <a class="nav-link dropdown-toggle drop-nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Офіційні сайти
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="badge badge-danger">Х</a>
+                                <a class="nav-link" href="https://rada.gov.ua/" target="_blank">Верховна рада України</a>
+                                <a class="nav-link" href="https://www.kmu.gov.ua/" target="_blank">Урядовий портал</a>
+                                <a class="nav-link" href="http://www.ccu.gov.ua/" target="_blank">Конституційний суд України</a>
+                            </div>
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Статегія розвитку</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:open_data' %}">Відкриті дані</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Структурні підрозділи</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:historical_background' %}">Історична довідка</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'vacancies:index' %}">Вакансії</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'appeal:index' %}">Залишити звернення</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                </aside>
+
+                
+
+                <div class="all-content col-md-9 col-sm-12">
+
+                    <h3 class="page-caption sticky-top">{% block page_caption %} Головна {% endblock %}</h3>
+                    
+                    {% block content %} {% endblock %}
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-image-bottom">
+        </div>
+        
+            <footer class="page-footer font-small blue pt-4">
+                <div class="container">
+                    <div class="container-fluid text-center text-md-left">
+                    <div class="row">
+                        <div class="col-md-6 mt-md-0 mt-3">
+                        <h5 class="footer-title">Закупненська селищна рада</h5>
+                        <p class="footer-link">Офіційний веб-сайт Закупненської селищної ради.</p> 
+                        <hr> 
+                        <p class="footer-link">Всі права захищено.</p>
+                        </div>
+                        <hr class="clearfix w-100 d-md-none pb-3">
+                        <div class="col-md-3 mb-md-0 mb-3">
+                        <h5 class="footer-title">Корисні посилання</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="footer-link" href="{% url 'vacancies:index' %}">Вакансії</a>
+                            </li>
+                            <li>
+                                <a class="footer-link" href="{% url 'appeal:index' %}">Залишити звернення</a>
+                            </li>
+                            <li>
+                                <a class="footer-link" href="{% url 'main:historical_background' %}">Історична довідка</a>
+                            </li>
+                            <li>
+                                <a class="footer-link" href="{% url 'admin:index' %}" target="_blank">Вхід для адміністрації</a>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="col-md-3 mb-md-0 mb-3">
+                        <h5 class="footer-title">Офіційні сторінки</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="footer-link" href="https://rada.gov.ua/" target="_blank">Верховна рада України</a>
+                            </li>
+                            <li>
+                                <a class="footer-link" href="https://www.kmu.gov.ua/" target="_blank">Урядовий портал</a>
+                            </li>
+                            <li>
+                                <a class="footer-link" href="http://www.ccu.gov.ua/" target="_blank">Конституційний суд України</a>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                    <div class="footer-bottom text-center py-3"></div>
+                
+            </footer>
+    </div>
+    
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

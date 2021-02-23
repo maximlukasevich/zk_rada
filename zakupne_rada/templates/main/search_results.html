@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Результати пошуку {% endblock %}
+
+{% block page_caption %} Результати пошуку {% endblock %}
+
+{% block content %} 
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+    {% if documents_result %}
+    <div class="list-group">
+        <br>
+        <h5>Знайдені документи:</h5>
+        <br>
+        {% for document in documents_result %}
+            <div class="list-group-item"> 
+                <p class="news_title"><b>Назва документу:</b><a class="news_title" href="{% url 'documents:documents_detail' document.category document.id %}">{{document.documents_title}}</a></p> 
+                <p class="news_text"><b>Опис документу:</b> {{document.documents_text}}</p>  
+                <p class="news_publication_date col-12 text-right">Дата публікації: {{document.documents_publication_date}}</p>
+            </div>  
+           {% endfor %}
+    {% endif %}
+
+    {% if news_result %}
+        <br>
+        <h5>Знайдені новини:</h5>
+        <br>
+        {% for news in news_result %}
+            <div class="row some_news">
+                {% if news.news_image != "" %}
+                    <img class="col-md-12 col-lg-4 news_image" src="{{news.news_image.url}}" alt="news_image">
+                {% endif %}
+                {% if news.news_image == "" %}
+                    <img class="col-md-12 col-lg-4 news_image" src="{% static 'default.png' %}" alt="news_image">
+                {% endif %}
+                <div class="col-md-12 col-lg-8 some_news_text_content">
+                    <h4 class="news_title"><a href="{% url 'news:detail' news.id %}">{{news.news_title}}</a></h4>
+                    
+                    <p class="news_text">{{news.news_text}}</p>
+
+                </div>
+                <p class="news_publication_date col-12 text-right">Дата публікації: {{news.news_publication_date}}</p>
+            </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if ad_result %}
+        <br>
+        <h5>Знайдені оголошення:</h5>
+        <br>
+        {% for ad in ad_result %}
+            <div class="row some_news">
+                {% if ad.ad_image != "" %}
+                    <img class="col-md-12 col-lg-4 news_image" src="{{ad.ad_image.url}}" alt="ad_image">
+                {% endif %}
+                {% if ad.ad_image == "" %}
+                    <img class="col-md-12 col-lg-4 news_image" src="{% static 'default.png' %}" alt="ad_image">
+                {% endif %}
+                <div class="col-md-12 col-lg-8 some_news_text_content">
+                    <h4 class="news_title"><a href="{% url 'advertisement:detail' ad.id %}">{{ad.ad_title}}</a></h4>
+                    
+                    <p class="news_text">{{ad.ad_text}}</p>
+
+                </div>
+                <p class="news_publication_date col-12 text-right">Дата публікації: {{ad.ad_publication_date}}</p>
+            </div>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+
+{% endblock %}

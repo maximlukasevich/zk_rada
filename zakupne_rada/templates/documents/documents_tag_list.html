@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{category_name}}{% endblock %}
+
+{% block page_caption %} <a href="{% url 'documents:index' %}">Документи</a> >  {{ tag }} {% endblock %}
+
+{% block content %} 
+<link rel="stylesheet" href="{% static 'css/documents.css' %}">
+    
+{% if documents_list %}
+
+<div class="list-group">
+    {% for document in documents_list %}
+                
+        <a class="list-group-item list-group-item-action" href="{% url 'documents:documents_detail' tag document.id %}">{{document.documents_title}}</a>
+        
+    {% endfor %}
+</div>
+
+    {% else %}
+
+        <p>Документів данної категорі не знайдено. Можливо вони були видалені.</p>
+        
+    {% endif %}
+
+{% endblock %}

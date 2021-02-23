@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Вакансії {% endblock %}
+
+{% block page_caption %} Вакансії {% endblock %}
+
+{% block content %} 
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+    {% if vacancies_list %}
+    <br>
+    <p class="news_title">
+        Щоб дізнатись про цікаву Вам вакансію більше - скористайтесь контактною інформацією.
+        <hr>
+        <p>З повагою, адміністрація Закупненської селищної ради!</p>
+    </p>
+
+    <table class="table table-bordered table-responsive-lg">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Назва вакансії</th>
+            <th scope="col">Кількість вакансій</th>
+            <th scope="col">Критерії</th>
+            <th scope="col">Контакт для звернення</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for vacancy in vacancies_list %}
+            <tr>
+                <td scope="row">{{ vacancy.vacancy_name }}</td>
+                    <td>{{ vacancy.vacancy_number }}</td>
+                    <td>{{ vacancy.vacancy_criterion }}</td>
+                    <td>{{ vacancy.vacancy_contact }} </td>
+            </tr>
+            
+            {% endfor %}
+
+        </tbody>
+    </table> 
+
+    {% else %}
+
+        Not found
+        
+    {% endif %}
+
+{% endblock %}

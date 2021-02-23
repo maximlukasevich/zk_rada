@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Дякуємо за звернення! {% endblock %}
+
+{% block page_caption %} Дякуємо за звернення! {% endblock %}
+
+{% block content %} 
+
+{% csrf_token %}
+
+    <p>Ваш звернення було успішно відправлено, дякуємо!<p>
+    <a href="{% url 'appeal:index' %}">Повернутись на попереднью сторінку</a>
+
+{% endblock %}

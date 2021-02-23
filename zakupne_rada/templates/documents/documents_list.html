@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Документи {% endblock %}
+
+{% block page_caption %} Документи {% endblock %}
+
+{% block content %} 
+<link rel="stylesheet" href="{% static 'css/documents.css' %}">
+
+{% if documents_sessions %}
+<h4 class="page_caption" style="font-size: 16px;">Документи за сесіями:</h4>
+    {% for session in documents_sessions %}
+
+    <a class="btn  btn-sm" style="background-color: #2196f3; color: #fff; margin: 2px;" href="{% url 'documents:documents_detail_list' session.number %}" role="button">{{ session.number }}</a>
+    
+    {% endfor %}
+
+{% endif %}
+
+{% if documents_tags %}
+<h4 class="page_caption" style="font-size: 16px;">Документи за тегами:</h4>
+    {% for tag in documents_tags %}
+
+    <a class="btn  btn-sm" style="background-color: #2196f3; color: #fff; margin: 2px;" href="{% url 'documents:documents_detail_list' tag.tag %}" role="button">{{ tag.tag }}</a>
+    
+    {% endfor %}
+
+{% endif %}
+
+<h4 class="page_caption" style="font-size: 16px;">Документи за категоріями:</h4>
+{% if documents_categories %}
+<div class="list-group">
+    {% for category in documents_categories %}
+            
+        <a class="list-group-item list-group-item-action" href="{% url 'documents:documents_detail_list' category.category_name %}">{{category.category_name}}</a>
+    
+
+{% endfor %}
+</div>
+    {% else %}
+
+        Not found
+        
+    {% endif %}
+
+{% endblock %}

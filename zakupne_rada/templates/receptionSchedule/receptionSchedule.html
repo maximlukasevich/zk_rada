@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Графік прийому громадян {% endblock %}
+
+{% block page_caption %} Графік прийому громадян {% endblock %}
+
+{% block content %} 
+
+    
+    {% if obj %}
+    
+        <br>
+        <h5 class="text-center">Графік прийому громадян працівниками Закупненської селищної ради</h5>
+
+        <table class="table table-bordered table-responsive-lg">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Посада</th>
+            <th scope="col">ПІП</th>
+            <th scope="col">Дні прийому</th>
+            <th scope="col">Години прийому</th>
+        </tr>
+        </thead>
+        <tbody>
+    
+            {% for element in obj %}
+            <tr>
+                <th scope="row">{{ element.id }}</th>
+                    <td>{{ element.position }}</td>
+                    <td>{{ element.fullName }}</td>
+                    <td>{{ element.dayOfReception }}</td>
+                    <td>{{ element.receptionHouse }}</td>
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+    </table> 
+
+    
+    {% else %}
+
+        Not found
+        
+    {% endif %}
+
+{% endblock %}

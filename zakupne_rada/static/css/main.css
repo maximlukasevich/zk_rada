@@ -1,0 +1,35 @@
+.card {
+    margin-top: 5px;
+}
+.card_href {
+    font-size: 18px;
+}
+.card-text {
+    font-size: 16px;
+}
+.map-card {
+    padding: 0;
+}
+
+@media screen and (max-width: 576px) {
+    .first-card-gol-img {
+        max-height: 340px;
+        max-width: 340px;
+        padding: 20px 20px 0 20px;
+    }
+}
+.card-small-text {
+    font-size: 14px;
+}
+
+.info-title {
+    padding: 10px 0 0 0;
+}
+
+.document-card {
+    margin: 15px;
+}
+.tag-list {
+    margin: 2px;
+    font-size:  14px;
+}

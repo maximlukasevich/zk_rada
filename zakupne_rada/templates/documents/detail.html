@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{document.documents_title}}{% endblock %}
+
+{% block page_caption %} 
+<a href="{% url 'documents:index' %}">Документи</a> > 
+<a href="{% url 'documents:documents_detail_list' category_name %}">{{category_name}}</a> > 
+{{document.documents_title}}
+{% endblock %}
+
+{% block content %} 
+<link rel="stylesheet" href="{% static 'css/documents.css' %}">
+    <div class="card" >
+        
+        <div class="card-body">
+          <h5 class="card-title">{{document.documents_title}}</h5>
+          <p class="card-text">{{document.documents_text}}</p>
+          <p class="card-text">{{document.tags__tag}}</p>
+
+          <hr>
+          {% if session %}
+            <p class="card-text">Номер сесії: <a class="btn btn-outline-primary btn-sm" style="margin: 2px;" href="{% url 'documents:documents_detail_list' session.number %}" role="button">{{ session.number }}</a></p>
+          {% endif %}
+          
+          {% if tags %}
+            <p class="card-text">Теги: {% for tag in tags %} <a class="btn btn-outline-primary btn-sm" style="margin: 2px;" href="{% url 'documents:documents_detail_list' tag %}" role="button">{{ tag }}</a> {% endfor %} </p>
+          {% endif %}
+          <hr>
+          <a href="{{document.document.url}}" class="btn btn-primary" download>Завантажити документ</a>
+        </div>
+        <div class="card-footer text-muted">
+         <p>Дата публікації: {{document.documents_publication_date}}</p>
+        </div>
+      </div>
+
+{% endblock %}

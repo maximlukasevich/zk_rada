@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{news.news_title}} {% endblock %}
+
+{% block page_caption %} <a class="detail_news_link" href="{% url 'news:index' %}"> Новини </a> > {{news.news_title}} {% endblock %}
+
+{% block content %}
+    
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'news.css' %}">
+
+    <div class="detail_some_news row">
+        <div class="container">
+        {% if news.news_image != "" %}
+            <center><img class="detail_news_image img-fluid" src="{{news.news_image.url}}" alt="news_image"></center>
+        {% endif %}
+        {% if news.news_image == "" %}
+            <center><img class="detail_news_image img-fluid" src="{% static 'default.png' %}" alt="news_image"></center>
+        {% endif %}
+        </div>
+        <div class="detail_some_news_text col-md-12">
+            <br>
+            <h4 class="news_title ">{{news.news_title}}</h4>
+            <br>
+            <p class="detail_news_text">{{news.news_text}}</p>
+
+        </div>
+        <p class="news_publication_date col-12 text-right">Дата публікації: {{news.news_publication_date}}</p>
+    </div>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    {% endblock %}

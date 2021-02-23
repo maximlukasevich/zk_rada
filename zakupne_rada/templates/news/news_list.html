@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Новини {% endblock %}
+
+{% block page_caption %} Новини {% endblock %}
+
+{% block content %} 
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+    {% if news_list %}
+
+        {% for news in news_list %}
+        
+            <div class="row some_news">
+                {% if news.news_image != "" %}
+                    <img class="col-md-12 col-lg-4 news_image" src="{{news.news_image.url}}" alt="news_image">
+                {% endif %}
+                {% if news.news_image == "" %}
+                    <img class="col-md-12 col-lg-4 news_image" src="{% static 'default.png' %}" alt="news_image">
+                {% endif %}
+                <div class="col-md-12 col-lg-8 some_news_text_content">
+                    <h4 class="news_title"><a href="{% url 'news:detail' news.id %}">{{news.news_title}}</a></h4>
+                    
+                    <p class="news_text">{{news.news_text}}</p>
+
+                </div>
+                <p class="news_publication_date col-12 text-right">Дата публікації: {{news.news_publication_date}}</p>
+            </div>
+            
+            
+        {% endfor %}
+        
+    {% else %}
+
+        Not found
+        
+    {% endif %}
+
+{% endblock %}

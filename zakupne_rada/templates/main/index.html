@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+    
+    <div class="row">
+        <div class="col-sm-8 col-xs-12">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h3 class="">Вітаємо Вас на сайті Закупненської селищної ради</h3>
+                    <p class="lead">Офіційний веб-сайт Закупненської селищної ради створений з метою забезпечення населення достовірною, об'єктивною і повною інформацією про роботу селищної ради.</p>
+                </div>
+            </div>
+            <div class="info">
+                
+                {% if last_ad %}
+
+                <h4 class="info-title">Актуальні оголошення:</h4>
+                
+                {% for ad in last_ad %}
+
+                
+                <div class="row some_news">
+                    {% if ad.ad_image != "" %}
+                        <img class="col-md-12 col-lg-4 news_image" src="{{ad.ad_image.url}}" alt="ad_image">
+                    {% endif %}
+                    {% if ad.ad_image == "" %}
+                        <img class="col-md-12 col-lg-4 news_image" src="{% static 'default.png' %}" alt="ad_image">
+                    {% endif %}
+                    <div class="col-md-12 col-lg-8 some_news_text_content">
+                        <h4 class="news_title"><a href="{% url 'advertisement:detail' ad.id %}">{{ad.ad_title}}</a></h4>
+                        
+                        <p class="news_text">{{ad.ad_text}}</p>
+    
+                    </div>
+                    <p class="news_publication_date col-12 text-right">Дата публікації: {{ad.ad_publication_date}}</p>
+                </div>
+
+                {% endfor %}
+                {% endif %}
+
+            </div>
+            <div class="info">
+
+                {% if last_news %}
+
+                <h4 class="info-title">Актуальні новини:</h4>
+
+                {% for news in last_news %}
+
+                
+                <div class="row some_news">
+                    {% if news.news_image != "" %}
+                        <img class="col-md-12 col-lg-4 news_image" src="{{news.news_image.url}}" alt="news_image">
+                    {% endif %}
+                    {% if news.news_image == "" %}
+                        <img class="col-md-12 col-lg-4 news_image" src="{% static 'default.png' %}" alt="news_image">
+                    {% endif %}
+                    <div class="col-md-12 col-lg-8 some_news_text_content">
+                        <h4 class="news_title"><a href="{% url 'news:detail' news.id %}">{{news.news_title}}</a></h4>
+                        
+                        <p class="news_text">{{news.news_text}}</p>
+    
+                    </div>
+                    <p class="news_publication_date col-12 text-right">Дата публікації: {{news.news_publication_date}}</p>
+                </div>
+
+                {% endfor %}
+                {% endif %}
+
+            </div>
+            <div class="info">
+                {% if last_documents %}
+                <h4 class="info-title">Останні опубліковані документи:</h4>
+                    <div class="card-group">
+                    {% for document in last_documents %}
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title"><a class="card_href" href="{% url 'documents:documents_detail' document.category document.id %}">{{document.documents_title}}</a></h5>
+                            <p class="card-text">Категорія:<br><i><a class="" href="{% url 'documents:documents_detail_list' document.category %}">{{document.category}}</a></i></p> 
+                        </div>
+                            <div class="card-footer">
+                            <small class="text-muted">Дата публікації: <br><i>{{document.documents_publication_date}}</i></small>
+                          </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+            <div class="col-sm-4 col-xs-12"> 
+                {% for card in cards %}
+                    <div class="card col-xs-6">
+                    {% if card.card_image != "" %}
+                            <img src="{{card.card_image.url}}" class="card-img-top first-card-gol-img mx-auto d-block" alt="{{card.card_title}}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{card.card_title}}</h5>
+                        <p class="card-text">{{card.card_text}}</p>
+                        <hr>
+                        <p class="card-text card-small-text">Оновлено: <br> <i>{{card.card_publication_date}}</i></p>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="card">
+                    <div class="card-body col-xs-12">
+                        <h5 class="card-title">Корисна інформація</h5>
+                        <p class="card-text">Код КОАТУУ: <i>6825255400</i></p>
+                        <p class="card-text">Поштовий індекс: <i>31614</i></p>
+                        <p class="card-text">Телефонний код: <i>+380 3859</i></p>
+                        <p class="card-text">Географічні координати: <i>49°07′10″ пн. ш. 26°20′13″ сх. д.</i></p>
+                    </div>
+                </div>
+
+                <div class="card col-md-12 col-lg-12 map-card">
+                    <div class="card-body map-card">
+                        <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+                            <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
+                            var setting = {"height":358,"width":803,"zoom":13,"queryString":"Закупне, Хмельницкая область, Украина","place_id":"ChIJdSF0bR2GMUcRpGIcOgE95LU","satellite":false,"centerCoord":[49.119399194735635,26.336852900000014],"cid":"0xb5e43d013a1c62a4","lang":"ru","cityUrl":"/ukraine/satanov-327945","cityAnchorText":"Карта [CITY1], Хмельницкий, Украина","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"204966"};
+                            var d = document;
+                            var s = d.createElement('script');
+                            s.src = 'https://1map.com/js/script-for-user.js?embed_id=204966';
+                            s.async = true;
+                            s.onload = function (e) {
+                                window.OneMap.initMap(setting)
+                            };
+                            var to = d.getElementsByTagName('script')[0];
+                            to.parentNode.insertBefore(s, to);
+                            })();</script><a href="https://1map.com/ru/map-embed">1 Map</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+{% endblock %}

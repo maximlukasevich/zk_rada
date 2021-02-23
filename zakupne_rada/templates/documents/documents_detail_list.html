@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{category_or_tag}}{% endblock %}
+
+{% block page_caption %} <a href="{% url 'documents:index' %}">Документи</a> >  {{category_or_tag}} {% endblock %}
+
+{% block content %} 
+<link rel="stylesheet" href="{% static 'css/documents.css' %}">
+    
+{% if documents_tag_list %}
+
+<div class="list-group">
+
+    {% for document in documents_tag_list %}
+                
+        <a class="list-group-item list-group-item-action" href="{% url 'documents:documents_detail' category_or_tag document.id %}">{{document.documents_title}}</a>
+        
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if documents_sessions_list %}     
+    <div class="list-group">
+        {% for document in documents_sessions_list %}
+                    
+            <a class="list-group-item list-group-item-action" href="{% url 'documents:documents_detail' category_or_tag document.id %}">{{document.documents_title}}</a>
+            
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if documents_category_list %}
+
+<div class="list-group">
+
+    {% for document in documents_category_list %}
+                
+        <a class="list-group-item list-group-item-action" href="{% url 'documents:documents_detail' category_or_tag document.id %}">{{document.documents_title}}</a>
+        
+    {% endfor %}
+
+</div>
+{% endif %}
+
+
+
+{% endblock %}

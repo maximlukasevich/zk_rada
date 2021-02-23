@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Залишити звенення {% endblock %}
+
+{% block page_caption %} Залишити звенення {% endblock %}
+
+{% block content %} 
+
+    <form action="/appeal/thanks/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail">Ваша електрона пошта:</label>
+            <input type="email" class="form-control" name="mail" id="exampleInputEmail" placeholder="Введіть електрону пошту">
+            <small class="form-text text-muted">Приклад: mail@example.com</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputText">Текст звернення:</label>
+            <textarea rows="7" type="message" name="message" class="form-control" id="exampleInpuTtext" placeholder="Текст звернення"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Відправити</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Контакти {% endblock %}
+
+{% block page_caption %} Контакти {% endblock %}
+
+{% block content %} 
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+    {% if contacts %}
+    <br>
+    <p class="news_title">
+        Якщо у вас виникли якісь запитання, ви можете зателефонувати, або написати листа за контактною інформацією, яка наведена нижче. 
+        <hr>З повагою, адміністрація Закупненської селищної ради.
+    </p>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Тип звязку</th>
+            <th scope="col">Контакт</th>
+            </tr>
+        </thead>
+        <tbody>
+    
+            {% for contact in contacts %}
+            <tr>
+                <th scope="row">{{ contact.id }}</th>
+                    <td>{{ contact.contact_type }}</td>
+                    <td>{{ contact.contact }}</td>
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+    </table> 
+
+    {% else %}
+
+        Not found
+        
+    {% endif %}
+
+{% endblock %}
